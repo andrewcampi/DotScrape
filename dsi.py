@@ -271,22 +271,20 @@ def run_scraper(notes, commands):
     # Assuming the driver should be closed at the end of the script
     driver.quit()
 
-
+# IF IMPORTING FROM ANOTHER FILE (i.e. you did "import dsi"), simply provide your multi-line .scrape language as an argument and run this function.
 def run_dot_scrape(dot_scrape_content):
     notes, commands = parse_scrape_content(dot_scrape_content)
-    return run_scraper(notes, commands)
+    return run_scraper(notes, commands) # Returns a dictionary with (at most) keys "driver" and "variables"
 
 
-# MAIN
+# MAIN -- You can use this code to run the DSI from the command line, given a .scrape file path as an argument.
 """
 # Check if the command-line arguments include the filename
 if len(sys.argv) > 1:
-    dot_scrape_filename = sys.argv[1]  # This sets the variable to the second command-line argument
+    dot_scrape_filename = sys.argv[1]
 else:
     print("No dot scrape filename provided.")
     sys.exit(1)  # Exit the script if no argument is given
-
 notes, commands = parse_scrape_file(dot_scrape_filename)
-name = run_scraper(notes, commands)
-print(name)
+run_scraper(notes, commands)
 """
