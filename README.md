@@ -1,2 +1,2 @@
 # DotScrape
-A new web scraping using natural language
+A new natural language for web scraping
