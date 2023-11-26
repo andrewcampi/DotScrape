@@ -146,6 +146,7 @@ Example #2:
 click on the div with class "DasDJd"
 ~~~
 When you use "inspect element" in your browser on the page, you will see lines of HTML like "<div class="LGOjhe" ..." Use the class name seen there in this type of .scrape command.
+You need to use double quotes in your command. 
 
 ### Clicking on a link with a specific URL substring
 Syntax:
@@ -161,6 +162,7 @@ Example #2:
 Click the link with "https://example".
 ~~~
 This will click on the first link with the URL substring provided, so be very specific with your provided URL substring so there is not confusion due to duplicates.
+You need to use double quotes in your command. 
 
 ### Click the link with specific visible link text
 Syntax:
@@ -176,5 +178,49 @@ Example #2:
 Click the first link containing "Submit".
 ~~~
 This will click on the first link on the page that contains the specified link text. The link text is the text you can see that represents a link on a page. 
+You need to use double quotes in your command. 
 
+### Click on a specific button
+Syntax:
+~~~
+Click the "{button text}"
+~~~
+Example #1:
+~~~
+Click the "Submit" button.
+~~~
+Example #2:
+~~~
+Click the "Click Me" button on the page.
+~~~
+This will click any button or input button on the page with the provided button text. You need to use double quotes in your command. 
 
+### Using variables to save scraped information
+Syntax:
+~~~
+Set the variable "{variable name}" to be the text in the {class or id} "{class or id name}"
+~~~
+Example #1:
+~~~
+Set the variable "person_age" to be the text in the class "age".
+~~~
+Example #2:
+~~~
+Set the variable "person_age" to be the text in the div with id "age". 
+~~~
+This will save the visible text in a variable "person_age". Reference the following command syntax to access the content of the variable.
+
+### Returning the driver and/or your variables
+Syntax:
+~~~
+Return the driver
+Return the driver and all variables
+Return the variable {variable name}
+Return the driver and the variable {variable name}
+Return all variables
+~~~
+Using one of the above lines will terminate the .scrape code and return a dictionary.
+If you returned the driver only, it will have one key named "driver". 
+If you used "Return all variables" only, it will have one key named "variables" that is a dictionary of variables as keys and their variable values as the values. 
+If you used "Return the variable {variable name}" It will have the key "variables" that is a string.
+If you returned the driver and the variable(s), It will have two keys: "driver" and "variables".
