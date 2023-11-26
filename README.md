@@ -197,15 +197,15 @@ You need to use double quotes in your command.
 ### Clicking on a link with a specific URL substring
 Syntax:
 ~~~
-click the link with "{URL substring}"
+click the link with "{URL substring}" in the url
 ~~~
 Example #1:
 ~~~
-click the link with "example.com"
+click the link with "example.com" in the url
 ~~~
 Example #2:
 ~~~
-Click the link with "https://example".
+Click the link with "https://example" in the url.
 ~~~
 This will click on the first link with the URL substring provided, so be very specific with your provided URL substring so there is not confusion due to duplicates.
 You need to use double quotes in your command. 
@@ -213,15 +213,15 @@ You need to use double quotes in your command.
 ### Click the link with specific visible link text
 Syntax:
 ~~~
-click the first link containing "{link text}"
+click the link that says "{link text}"
 ~~~
 Example #1:
 ~~~
-click the first link containing "Click Me"
+click the link that says "Click Me"
 ~~~
 Example #2:
 ~~~
-Click the first link containing "Submit".
+Click the that says "Submit".
 ~~~
 This will click on the first link on the page that contains the specified link text. The link text is the text you can see that represents a link on a page. 
 You need to use double quotes in your command. 
