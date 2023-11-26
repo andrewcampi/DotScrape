@@ -1,6 +1,6 @@
 # .scrape
 A new natural coding language for web scraping.
-#### example.scrape:
+#### example.scrape :
 ~~~
 go to google.com
 type "Sam Altman Wikipedia"
