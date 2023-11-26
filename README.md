@@ -135,7 +135,7 @@ As expected, this simply hits enter, which is useful to submit an input form aft
 ### Navigating to a URL or website
 Syntax:
 ~~~
-Go to {url}
+go to {url}
 ~~~
 Example #1:
 ~~~
@@ -146,6 +146,13 @@ Example #2:
 Go to https://google.com
 ~~~
 You can use the entire url with or without "http(s)://". Not specifying "http(s)://" will use HTTPS. 
+
+### Go back (i.e. hitting the back button on your browser)
+Syntax:
+~~~
+go back
+~~~
+This goes back a page.
 
 ### Solving the recaptcha
 Syntax:
