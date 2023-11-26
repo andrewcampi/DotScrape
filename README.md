@@ -12,7 +12,7 @@ The above example is basic .scrape code that navigates to Sam Altman's wikipedia
 Web scraping with Python has a high learning curve, even for basic tasks. It would be much easier if there was a wrapper for Python's Selenium library that enables users to use natural language to describe what they want to achieve. 
 
 ## How
-The Dot Scrape Interpreter (DSI) (dsi.py) converts .scrape natural language into Python Selenium code. You can use natural language like "go to google.com", "click on the text "click here"", "wait 3 seconds", or even "solve recaptcha". This way, you can start web scraping quickly while keeping your code readable and clean. 
+The Dot Scrape Interpreter (DSI) (dsi.py) converts .scrape natural language into Python Selenium code. You can use natural language like "go to google.com", "click on the text "Submit"", "wait 3 seconds", or even "solve recaptcha". This way, you can start web scraping quickly while keeping your code readable and clean. 
 
 ## Usage
 There are two ways to use the DSI. The best way to use it is to integrate it into your Python code. You can also write a .scrape file and run the DSI directly.
