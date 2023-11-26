@@ -241,6 +241,16 @@ Click the "Click Me" button on the page.
 ~~~
 This will click any button or input button on the page with the provided button text. You need to use double quotes in your command. 
 
+### Scrolling
+Syntax:
+~~~
+Scroll up
+Scroll down
+Scroll to the top
+Scroll to the bottom
+~~~
+Start your command with the word "scroll", and then state what direction you want to scroll (e.g. "scrolling up" approaches the top of the page).
+
 ### Using variables to save scraped information
 Syntax:
 ~~~
