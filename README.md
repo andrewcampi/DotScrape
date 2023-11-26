@@ -86,6 +86,13 @@ Wait 10 minutes.
 ~~~
 You can use any amount of time and "seconds", "minutes", or "hours". 
 
+### Wait forever
+Syntax:
+~~~
+wait forever
+~~~
+Helpful for developing, debugging, and testing .scrape code, this puts .scrape into an infinite loop, waiting endlessly. 
+
 ### Type something
 Syntax:
 ~~~
