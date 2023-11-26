@@ -5,7 +5,7 @@ A new natural coding language for web scraping.
 go to google.com
 type "Sam Altman Wikipedia"
 press enter
-click the first link containing "Sam Altman"
+click the link that says "Sam Altman"
 ~~~
 The above example is basic .scrape code that navigates to Sam Altman's wikipedia page. 
 
@@ -29,7 +29,7 @@ dot_scrape_code = """
 go to google.com
 type "Sam Altman Wikipedia"
 press enter
-click the first link containing "Sam Altman"
+click the link that says "Sam Altman"
 wait forever
 """
 run_dot_scrape(dot_scrape_code)
@@ -46,7 +46,7 @@ automatically solve recaptchas
 go to google.com
 type "Sam Altman Wikipedia"
 press enter
-click the first link containing "Sam Altman"
+click the link that says "Sam Altman"
 set the variable "wiki_page_content" to be the text in the id "mw-content-text"
 return the driver and the variable "wiki_page_content"
 """
@@ -72,7 +72,7 @@ Create your .scrape file. In this example, we will name it "test.scrape" and wri
 go to google.com
 type "Sam Altman Wikipedia"
 press enter
-click the first link containing "Sam Altman"
+click the link that says "Sam Altman"
 ~~~
 Then run the command "python dsi.py test.scrape".
 
