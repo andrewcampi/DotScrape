@@ -3,6 +3,7 @@ from time import sleep
 import random
 import re
 import sys
+import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -85,14 +86,15 @@ def parse_scrape_content(dot_scrape_content):
     return notes, commands
 
 
-def run_scraper(notes, commands):
+def run_scraper(notes, commands, driver=None):
     # Set up Chrome options
     options = Options()
     #options.add_argument("--headless")
     #options.add_argument(f'user-agent={user_agent}')
 
     # Initialize the Chrome driver using webdriver_manager
-    driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=options)
+    if driver == None:
+        driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=options)
 
     auto_solve_recaptcha = False
     for note in notes:
@@ -178,9 +180,10 @@ def run_scraper(notes, commands):
             # Click the first one with the specified substring in its URL
             for link in links:
                 url = link.get_attribute('href')
-                if sublink in url:
-                    link.click()
-                    break
+                if url:
+                    if sublink in url.lower():
+                        link.click()
+                        break
 
         elif command.startswith('click the first link containing '):
             link_text = command.split('"')[1]
@@ -246,11 +249,25 @@ def run_scraper(notes, commands):
         elif command.startswith('set the variable "'):
             parts = command.split('"')
             variable_name = parts[1]  # The first substring inside double quotes
-            class_name = parts[3]  # The second substring inside double quotes
-            # Find the element with the specified class name and extract its text content
-            element = driver.find_element(By.CLASS_NAME, class_name)
-            visible_text_content = element.text
-            variables[variable_name] = visible_text_content.strip().lower()
+            item_name = parts[3]  # The second substring inside double quotes
+            if " class " in command:
+                # Find the element with the specified class name and extract its text content
+                try:
+                    element = driver.find_element(By.CLASS_NAME, item_name)
+                except selenium.common.exceptions.NoSuchElementException:
+                    print("\n======= AN ERROR OCCURED =======")
+                    raise Exception(f'Could not find the class "{item_name}".')
+                visible_text_content = element.text
+                variables[variable_name] = visible_text_content.strip().lower()
+            if " id " in command:
+                # Find the element with the specified class name and extract its text content
+                try:
+                    element = driver.find_element(By.ID, item_name)
+                except selenium.common.exceptions.NoSuchElementException:
+                    print("\n======= AN ERROR OCCURED =======")
+                    raise Exception(f'Could not find the id "{item_name}".')
+                visible_text_content = element.text
+                variables[variable_name] = visible_text_content.strip().lower()
 
         elif command.startswith('return '):
             if "driver" in command:
@@ -270,11 +287,12 @@ def run_scraper(notes, commands):
 
     # Assuming the driver should be closed at the end of the script
     driver.quit()
+    return None
 
 # IF IMPORTING FROM ANOTHER FILE (i.e. you did "import dsi"), simply provide your multi-line .scrape language as an argument and run this function.
-def run_dot_scrape(dot_scrape_content):
+def run_dot_scrape(dot_scrape_content, driver=None):
     notes, commands = parse_scrape_content(dot_scrape_content)
-    return run_scraper(notes, commands) # Returns a dictionary with (at most) keys "driver" and "variables"
+    return run_scraper(notes, commands, driver=driver) # Returns a dictionary with (at most) keys "driver" and "variables"
 
 
 # MAIN -- You can use this code to run the DSI from the command line, given a .scrape file path as an argument.
@@ -286,5 +304,7 @@ else:
     print("No dot scrape filename provided.")
     sys.exit(1)  # Exit the script if no argument is given
 notes, commands = parse_scrape_file(dot_scrape_filename)
-run_scraper(notes, commands)
+return_value = run_scraper(notes, commands)
+if return_value:
+    print(return_value)
 """
