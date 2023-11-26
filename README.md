@@ -265,6 +265,22 @@ Example #2:
 Set the variable "person_age" to be the text in the div with id "age". 
 ~~~
 This will save the visible text in a variable "person_age". Reference the following command syntax to access the content of the variable.
+You need to use double quotes in your command. 
+
+### Snapshot the page into a variable
+Syntax:
+~~~
+snapshot this page into a variable "{variable name}"
+~~~
+Example #1:
+~~~
+Snapshot this page into a variable named "my_page".
+~~~
+Example #2:
+~~~
+Snapshot this page into a variable "my_page"
+~~~
+This will save the full html content into a variable "my_page". You need to use double quotes in your command. 
 
 ### Returning the driver and/or your variables
 Syntax:
