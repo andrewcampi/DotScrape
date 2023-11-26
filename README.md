@@ -282,6 +282,17 @@ Snapshot this page into a variable "my_page"
 ~~~
 This will save the full html content into a variable "my_page". You need to use double quotes in your command. 
 
+### Store the current URL into a variable
+Syntax:
+~~~
+store the current url into a variable "{variable name}"
+~~~
+Example 1:
+~~~
+Store the current url into a variable named "url1".
+~~~
+This will save the current full URL into a variable "url1". You need to use double quotes in your command. 
+
 ### Returning the driver and/or your variables
 Syntax:
 ~~~
