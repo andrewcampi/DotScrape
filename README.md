@@ -53,6 +53,13 @@ return the driver and the variable "wiki_page_content"
 returned_content = run_dot_scrape(dot_scrape_code)
 driver = returned_content["driver"]
 scraped_content = returned_content["variables"]
+
+# You can chain together .scrape by passing in the driver it returned as an argument
+dot_scrape_code_2 = """
+Click the link with "wiki/Stanford" in the url
+wait forever
+"""
+run_dot_scrape(dot_scrape_code_2, driver=driver)
 ~~~
 The above example also constantly checks for recaptchas between each .scrape command and tries to solve them. This extra check drastically slows the .scrape code. You should also be aware that returned_content["variables"] will be a dictionary of variable names you created as its keys. This happens when your .scrape code contains "return all variables" or "return the driver and all variables" instead of returning a specific variable like "return variable "{variable name}"". 
 
