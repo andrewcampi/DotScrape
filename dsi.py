@@ -185,14 +185,14 @@ def run_scraper(notes, commands, driver=None):
                         link.click()
                         break
 
-        elif command.startswith('click the first link containing '):
+        elif command.startswith('click the link that says "'):
             link_text = command.split('"')[1]
             # Find all links on the page
             links = driver.find_elements(By.TAG_NAME, 'a')
             # Click the first one containing the specified text
             for link in links:
                 text = link.text
-                if link_text in text.lower():  # Using lower to make it case-insensitive
+                if link_text.lower() in text.lower():  # Using lower to make it case-insensitive
                     link.click()
                     break
 
