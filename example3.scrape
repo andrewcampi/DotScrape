@@ -4,6 +4,6 @@ automatically solve recaptchas
 go to google.com
 type "Sam Altman Wikipedia"
 press enter
-click the first link containing "Sam Altman"
+click the link that says "Sam Altman"
 set the variable "wiki_page_content" to be the text in the id "mw-content-text"
 return the driver and the variable "wiki_page_content"
