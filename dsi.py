@@ -138,13 +138,25 @@ def run_scraper(notes, commands, driver=None):
             # Click on the found element
             element.click()
 
-        elif command.startswith('click on the div with class "'):
+        elif command.startswith('click on the div with class'):
             class_to_click = command.split('"')[1]  # Extract the class name from the command
             # Create an XPath expression that matches a div element with the specified class
             xpath_expression = f"//div[contains(@class, '{class_to_click}')]"
             # Find the element using the XPath selector
             elements = driver.find_elements(By.XPATH, xpath_expression)
             # Click the first visible div element with the specified class
+            for element in elements:
+                if element.is_displayed():  # Check if the element is visible
+                    element.click()  # Click on the visible element
+                    break
+
+        elif command.startswith('click on the div with id'):
+            id_to_click = command.split('"')[1]  # Extract the id from the command
+            # Create an XPath expression that matches a div element with the specified id
+            xpath_expression = f"//div[contains(@id, '{id_to_click}')]"
+            # Find the element using the XPath selector
+            elements = driver.find_elements(By.XPATH, xpath_expression)
+            # Click the first visible div element with the specified id
             for element in elements:
                 if element.is_displayed():  # Check if the element is visible
                     element.click()  # Click on the visible element
