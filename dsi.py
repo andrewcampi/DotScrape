@@ -274,6 +274,10 @@ def run_scraper(notes, commands, driver=None):
                 print("--> Could not find a recatpcha")
                 do_nothing()
 
+        elif command.startswith('snapshot this page into a variable "'):
+            variable_name = command.split('"')[1].lower()
+            variables[variable_name] = driver.page_source
+
         elif command.startswith('set the variable "'):
             parts = command.split('"')
             variable_name = parts[1]  # The first substring inside double quotes
@@ -287,7 +291,7 @@ def run_scraper(notes, commands, driver=None):
                     raise Exception(f'Could not find the class "{item_name}".')
                 visible_text_content = element.text
                 variables[variable_name] = visible_text_content.strip().lower()
-            if " id " in command:
+            elif " id " in command:
                 # Find the element with the specified class name and extract its text content
                 try:
                     element = driver.find_element(By.ID, item_name)
