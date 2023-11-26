@@ -278,6 +278,10 @@ def run_scraper(notes, commands, driver=None):
             variable_name = command.split('"')[1].lower()
             variables[variable_name] = driver.page_source
 
+        elif command.startswith('store the current url into a variable'):
+            variable_name = command.split('"')[1].lower()
+            variables[variable_name] = driver.current_url
+
         elif command.startswith('set the variable "'):
             parts = command.split('"')
             variable_name = parts[1]  # The first substring inside double quotes
