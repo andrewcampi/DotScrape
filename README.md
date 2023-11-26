@@ -86,6 +86,37 @@ Wait 10 minutes.
 ~~~
 You can use any amount of time and "seconds", "minutes", or "hours". 
 
+### Type something
+Syntax:
+~~~
+type "{text to type}"
+~~~
+Example #1:
+~~~
+Type the text "My name is Adam".
+~~~
+Example #2:
+~~~
+type "My name is Adam"
+~~~
+Make sure you clicked on the text box that you want to type in before using this syntax. Otherwise, it might not type in the correct place or at all. 
+You need to use double quotes in your command. 
+
+### Hit the enter key
+Syntax:
+~~~
+{"click", "type", "hit", or "press"} enter
+~~~
+Example #1:
+~~~
+Press the Enter key.
+~~~
+Example #2:
+~~~
+hit enter
+~~~
+As expected, this simply hits enter, which is useful to submit an input form after typing something, rather than finding and pressing the submit button.
+
 ### Navigating to a URL or website
 Syntax:
 ~~~
