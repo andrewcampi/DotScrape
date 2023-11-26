@@ -235,6 +235,22 @@ def run_scraper(notes, commands, driver=None):
         elif command.startswith('return to main'):
             driver.switch_to.default_content()
 
+        elif command.startswith('scroll') and ("top" in command or "start" in command):
+            # Scroll to the top of the page
+            driver.execute_script("window.scrollTo(0, 0);")
+
+        elif command.startswith('scroll up'):
+            # Scroll up a maximum of 1 page view
+            driver.execute_script("window.scrollBy(0, -window.innerHeight);")
+
+        elif command.startswith('scroll') and ("bottom" in command or "end" in command):
+            # Scroll to the bottom of the page
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+        elif command.startswith('scroll down'):
+            # Scroll down a maximum of 1 page view
+            driver.execute_script("window.scrollBy(0, window.innerHeight);")
+
         elif command.startswith('solve') and "recaptcha" in command:
             try:
                 print("--> Looking for recaptcha to solve")
