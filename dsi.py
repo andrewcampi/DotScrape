@@ -274,7 +274,7 @@ def run_scraper(notes, commands, driver=None):
                 print("--> Could not find a recatpcha")
                 do_nothing()
 
-        elif command.startswith('snapshot this page into a variable "'):
+        elif command.startswith('snapshot this page into a variable'):
             variable_name = command.split('"')[1].lower()
             variables[variable_name] = driver.page_source
 
@@ -313,8 +313,10 @@ def run_scraper(notes, commands, driver=None):
             else:
                 if "the variable" in command:
                     variable_to_return = command.split('"')[1].lower()
+                    driver.quit()
                     return {"variables":variables[variable_to_return]}
                 elif "all" in command and "variables" in command:
+                    driver.quit()
                     return {"variables":variables}
 
     # Assuming the driver should be closed at the end of the script
