@@ -124,10 +124,14 @@ def run_scraper(notes, commands, driver=None):
 
         if command.startswith('go to '):
             # Extract the URL and navigate to it
-            url = command.replace('go to ', '').strip()
+            url = command.replace('go to ', '').replace('"', '').strip()
             if "http" not in url:
                 url = "https://" + url
             driver.get(url)
+
+        elif command.startswith('go back'):
+            # TODO: Hit the back button to go back one page
+            driver.back()
 
         elif command.startswith('click on the text "'):
             text_to_click = command.split('"')[1]
