@@ -11,6 +11,7 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, NoSuchFrameException, TimeoutException
+from selenium.common.exceptions import ElementNotInteractableException
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.chrome.service import Service
@@ -209,8 +210,13 @@ def run_scraper(notes, commands, driver=None):
             for link in links:
                 text = link.text
                 if link_text.lower() in text.lower():  # Using lower to make it case-insensitive
-                    link.click()
-                    break
+                    try:
+                        link.click()
+                        break
+                    except ElementNotInteractableException:
+                        href = link.get_attribute('href')
+                        driver.get(href)
+                        break
 
         elif command.startswith('click the "'):
             button_substring_text = command.split('"')[1].lower()  # Extract the target text and convert it to lowercase
