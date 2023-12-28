@@ -1,3 +1,4 @@
 selenium
 byerecaptcha
 webdriver_manager
+undetected-chromedriver
