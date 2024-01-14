@@ -113,36 +113,35 @@ def click_on_text(driver, text_to_click):
 
 
 def run_scraper(notes, commands, driver=None, quiet=False, headless=False):
-    # Set up the driver
-    if BROWSER == "Firefox":
-        options = FirefoxOptions()
-        options.add_argument("--disable-web-security")
-        options.add_argument("--allow-running-insecure-content")
-        if headless:
-            options.add_argument("--headless")
-        #options.add_argument(f'user-agent={user_agent}')
-        # Initialize the driver using webdriver_manager
-        if driver == None:
-            driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
-    elif BROWSER == "Chrome":
-        options = ChromeOptions()
-        options.add_argument("--disable-web-security")
-        options.add_argument("--allow-running-insecure-content")
-        if headless:
-            options.add_argument("--headless")
-        #options.add_argument(f'user-agent={user_agent}')
-        # Initialize the driver using webdriver_manager
-        if driver == None:
-            driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
-    elif BROWSER == "UndetectedChrome":
-        options = uc.ChromeOptions()
-        options.add_argument("--no-sandbox")
-        if headless:
-            driver = uc.Chrome(options=options, headless=True, version_main=119)
-        else:
-            driver = uc.Chrome(options=options, version_main=119)
-    else:
-        exit()
+    if driver == None:
+        # Set up the driver
+        if BROWSER == "Firefox":
+            options = FirefoxOptions()
+            options.add_argument("--disable-web-security")
+            options.add_argument("--allow-running-insecure-content")
+            if headless:
+                options.add_argument("--headless")
+            #options.add_argument(f'user-agent={user_agent}')
+            # Initialize the driver using webdriver_manager
+            if driver == None:
+                driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
+        elif BROWSER == "Chrome":
+            options = ChromeOptions()
+            options.add_argument("--disable-web-security")
+            options.add_argument("--allow-running-insecure-content")
+            if headless:
+                options.add_argument("--headless")
+            #options.add_argument(f'user-agent={user_agent}')
+            # Initialize the driver using webdriver_manager
+            if driver == None:
+                driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+        elif BROWSER == "UndetectedChrome":
+            options = uc.ChromeOptions()
+            options.add_argument("--no-sandbox")
+            if headless:
+                driver = uc.Chrome(options=options, headless=True, version_main=119)
+            else:
+                driver = uc.Chrome(options=options, version_main=119)
 
     auto_solve_recaptcha = False
     for note in notes:
@@ -328,7 +327,8 @@ def run_scraper(notes, commands, driver=None, quiet=False, headless=False):
             # List of possible selectors for buttons
             button_selectors = [
                 By.XPATH, "//button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{}')]".format(button_substring_text),
-                By.XPATH, "//input[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{}') and (@type='submit' or @type='button')]".format(button_substring_text)
+                By.XPATH, "//input[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{}') and (@type='submit' or @type='button')]".format(button_substring_text),
+                By.XPATH, "//textarea[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{}')]".format(button_substring_text)
             ]
             # Check main content and iframes
             for selector_type, selector in zip(button_selectors[::2], button_selectors[1::2]):
