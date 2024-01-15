@@ -101,6 +101,21 @@ wait forever
 ~~~
 Helpful for developing, debugging, and testing .scrape code, this puts .scrape into an infinite loop, waiting endlessly. 
 
+### Refresh the current page
+Syntax:
+~~~
+refresh {any text here}
+~~~
+Example #1:
+~~~
+Refresh the page.
+~~~
+Example #2:
+~~~
+Refresh now.
+~~~
+This will refresh the page.
+
 ### Type something
 Syntax:
 ~~~
