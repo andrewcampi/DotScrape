@@ -182,6 +182,9 @@ def run_scraper(notes, commands, driver=None, quiet=False, headless=False):
         elif command.startswith('go back'):
             driver.back()
 
+        elif command.startswith('refresh'):
+            driver.refresh()
+
         elif command.startswith('click on the element with class name "') and "or the text" in command:
             parts = command.split('"')
             class_to_click = parts[1].strip()
